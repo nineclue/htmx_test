@@ -1,0 +1,4 @@
+[debug] [htmx_test-build-build] Classpath dependencies List()
+[debug] [htmx_test-build-build] Dependencies from configurations List()
+[debug] Bloop wrote the configuration of project 'htmx_test-build-build' to '/Users/nineclue/lab/htmx_test/project/project/.bloop/htmx_test-build-build.json'
+[success] Generated .bloop/htmx_test-build-build.json
