@@ -28,3 +28,8 @@ dist-ssr
 .bsp
 target
 metals.sbt
+
+tailwindcss
+output.css
+*json
+*js
