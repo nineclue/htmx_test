@@ -6,13 +6,14 @@ import org.http4s.ember.server.*
 import org.http4s.implicits.*
 import org.http4s.headers.{Origin, `Content-Type`}
 import scalatags.Text.all.*
-import htmx.HTMX.* 
+// import htmx.HTMX.* 
 
 // installed tailwindcss & daisyui and running 
 // ./tailwindcss -i input.css -o src/main/resources/output.css
 
 object TestServer extends IOApp:
     val index = "<!DOCTYPE html>" + html(
+        data.theme := "light",
         head(
             meta(charset := "UTF-8"),
             title := "HTMX with ScalaTags & Http4s",
@@ -24,16 +25,20 @@ object TestServer extends IOApp:
         body(
             button(id := "target", 
                 cls := "btn btn-accent text-xl",
-                hxget := "/clicked", 
-                hxtrigger := "click", 
-                hxtarget := "#target",
-                "안녕? 여러분!!!")
-        ),
-        blockquote(cls := "text-2xl font-semibold italic text-center text-slate-900",
-            "When you look ",
-            span(cls := "before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block",
-                span(cls := "relative text-white", "annoyed")),
-            " all the time, people think that you're busy.")
+                data.hx.get := "/clicked", 
+                data.hx.trigger := "click", 
+                data.hx.target := "#target",
+                "안녕? 여러분!!!"),
+            blockquote(cls := "text-2xl font-semibold italic text-center text-slate-900",
+                "When you look ",
+                span(cls := "before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block",
+                    span(cls := "relative text-white", "annoyed")),
+                " all the time, people think that you're busy."),
+            div(cls := "join",
+                input(cls := "join-item btn", `type` := "radio", name := "options", aria.label := "스칼라"),
+                input(cls := "join-item btn", `type` := "radio", name := "options", aria.label := "고"),
+                input(cls := "join-item btn", `type` := "radio", name := "options", aria.label := "파이썬"))
+        )
     )
 
     private val textHtmlType = MediaType.unsafeParse("text/html")
