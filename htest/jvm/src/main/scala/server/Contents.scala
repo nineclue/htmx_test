@@ -37,6 +37,10 @@ object Contents:
                 Seq(data.hx.target := "#hcontent", data.hx.get := s"/step/${i + 1}") 
             else 
                 Seq(onclick := "Apex.hello()")
+        def sliderWithLabel(elmId: String, minVal: Int = 0, maxVal: Int = 100, defVal: Int = 25) = 
+            div(cls := "form-control",
+                span(label(cls := "label", elmId.capitalize), label(id := s"${elmId}label", cls := "label", defVal)),
+                input(id := elmId, tpe := "range", min := minVal, max := maxVal, value := defVal, cls := "range",  step := 25, oninput := s"Apex.update('$elmId', '${elmId}label')"))
         val form = 
             if i < 1 then
                 Seq.empty
@@ -44,22 +48,18 @@ object Contents:
                 Seq(
                     div(cls := "card flex-col shadow-2xl bg-base-100",
                         div(cls := "card-body",
-                            div(cls := "form-control", 
-                                label(cls := "label", "Min"),
-                                input(id := "min", tpe := "range", min := 0, max := 100, value := 25, cls := "range",  step := 25)),
-                            div(cls := "form-control",
-                                label(cls := "label", "Max"),
-                                input(id := "max", tpe := "range", min := 0, max := 100, value := 25, cls := "range",  step := 25)),
+                            sliderWithLabel("min"),
+                            sliderWithLabel("max", defVal = 75),
                             div(cls := "form-control",
                                 span(label(cls := "label", "Count"), label(id := "countlabel", cls := "label", 5)),
-                                input(id := "count", tpe := "range", min := 10, max := 30, value := 20, cls := "range",  step := 5, onchange := "Apex.update(count, countlabel)"))
+                                input(id := "count", tpe := "range", min := 10, max := 30, value := 20, cls := "range",  step := 5, oninput := "Apex.update('count', 'countlabel')"))
                             )))
 
         div(id := "hcontent", cls := hclass, 
             h1(cls := "text-5xl font-bold", texts(i)._1),
             p(cls := "py-6", texts(i)._2),
             form,
-            button(cls := "btn btn-primary py-2", texts(i)._3)(buttonModifier)
+            button(cls := "btn btn-primary py-2", texts(i)._3)(buttonModifier),
         )
 
     val dummy = 

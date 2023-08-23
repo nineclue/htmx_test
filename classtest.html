@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.1/dist/full.css" rel="stylesheet" type="text/css" />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="./htest/js/target/scala-3.3.0/htest-fastopt/main.js"></script>
     </head>
 
     <body>
@@ -16,7 +17,8 @@
               <div class="max-w-md">
                 <h1 class="text-5xl font-bold">HTMX Test with Scala.js</h1>
                 <p class="py-6">어쩌고 저쩌고... blah blah...</p>
-                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-primary" onclick="Apex.hello()">Get Started</button>
+                <button class="btn btn-primary" onclick="(function (e) { Apex.printEvent(e); })()">Press</button>
               </div>
             </div>
           </div>
