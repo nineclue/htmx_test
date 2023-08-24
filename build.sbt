@@ -24,5 +24,6 @@ lazy val htest = crossProject(JSPlatform, JVMPlatform)
         "org.http4s" %% "http4s-ember-server" % http4sVersion,
         "org.http4s" %% "http4s-ember-client" % http4sVersion,
         "com.lihaoyi" %% "scalatags" % "0.12.0",
+        "com.lihaoyi" %% "upickle" % "3.1.2",
       )
     )
