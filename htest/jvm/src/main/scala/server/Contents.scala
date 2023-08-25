@@ -12,7 +12,7 @@ object Contents:
                 content := "width=device-width, initial-scale=1.0"),
             script(src := "/assets/htmx.min.js"),
             // script(src := "https://cdn.jsdelivr.net/npm/apexcharts"),
-            script(src := "/assets/apexcharts.js"),
+            script(src := "/assets/apexcharts.js"), // manually downloaded js and copied to htest/jvm/src/main/resources
             script(src := "apex.js"),
             link(href := "/assets/htest.css", rel := "stylesheet")
         ),
@@ -62,14 +62,14 @@ object Contents:
                 Seq.empty
             else
                 Seq(
-                    div(id := "charts", cls := "flex-col lg:flex-row",
-                        div(id := "chart1", cls := "w-4/5 lg:w-2/5"),
-                        div(id := "chart2", cls := "w-4/5 lg:w-2/5")
+                    div(id := "charts", cls := "flex-row sm:flex-col",
+                        div(id := "chart1", cls := "w-5/12"),
+                        div(id := "chart2", cls := "w-5/12")
                     ),
                     script("Apex.setupCharts('chart1', 'chart2')")
                 )
 
-        div(id := "page", cls := "flex-col", 
+        div(id := "page", // cls := "flex-col", 
             div(id := "hcontent", cls := hclass, 
                 h1(cls := "text-5xl font-bold", texts(i)._1),
                 p(cls := "py-6", texts(i)._2),
