@@ -27,7 +27,7 @@ object TestServer extends IOApp:
             Ok(Contents.index.toString, `Content-Type`(textHtmlType))
 
         // contents for multiple pages, this project uses only step 0 & 1
-        case GET -> Root / "step" / IntVar(i) =>
+        case GET -> Root / "step" / IntVar(i) if (i >= 0 && i <= 1) =>
             Ok(Contents.heroContent(i).toString)
 
         // called by step / 1 route, make random numbers and returns json with the numbers & stats

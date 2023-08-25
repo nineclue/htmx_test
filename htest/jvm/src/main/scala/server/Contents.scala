@@ -23,7 +23,8 @@ object Contents:
         )
     )
 
-    def sliderWithLabel(elmId: String, minVal: Int = 0, maxVal: Int = 100, stepVal: Int = 5, defVal: Int = 25, addF: Option[String] = None) = 
+    // returns range input with label values updates (through scala.js code)
+    private def sliderWithLabel(elmId: String, minVal: Int = 0, maxVal: Int = 100, stepVal: Int = 5, defVal: Int = 25, addF: Option[String] = None) = 
         // val fstr = s"(function () { ${addF.getOrElse("")} Apex.update('$elmId', '${elmId}label'); })()"
         val fstr = addF.getOrElse(s"Apex.updateSlider('$elmId', '${elmId}label')")
         div(cls := "form-control",
@@ -31,6 +32,7 @@ object Contents:
             input(id := elmId, name := elmId, tpe := "range", min := minVal, max := maxVal, value := defVal, cls := "range",  step := stepVal, 
                 oninput := fstr))
 
+    // simple page using daisy UI's hero CSS
     def heroContent(i: Int, dynamicView: Boolean = true, reverse: Boolean = false) = 
         val texts = Seq(
             ("Welcome!", "This is a test app written in scala, using http4s / scala.js / htmx / apexcharts. We'll demo boxplot of random values.", "Next"),
@@ -48,7 +50,7 @@ object Contents:
             else 
                 Seq(onclick := "Apex.gatherAndCall();")
         val formElem = 
-            if i == 0 then
+            if i == 0 then  // no form in page 0
                 Seq.empty
             else
                 Seq(div(cls := "card flex-col shadow-xl bg-base-100 py-3",
@@ -58,7 +60,7 @@ object Contents:
                             sliderWithLabel("count", 10, 30, 2, 20),
                         )))
         val chartElem = 
-            if i == 0 then
+            if i == 0 then  // no chart in page 0 
                 Seq.empty
             else
                 Seq(
@@ -66,7 +68,7 @@ object Contents:
                         div(id := "chart1", cls := "w-5/12"),
                         div(id := "chart2", cls := "w-5/12")
                     ),
-                    script("Apex.setupCharts('chart1', 'chart2')")
+                    script("Apex.setupCharts('chart1', 'chart2')") 
                 )
 
         div(id := "page", // cls := "flex-col", 
