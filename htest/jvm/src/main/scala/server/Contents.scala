@@ -17,9 +17,7 @@ object Contents:
             link(href := "/assets/htest.css", rel := "stylesheet")
         ),
         body(
-            div(cls := "hero min-h-screen bg-base-200", 
             heroContent(0)
-            )
         )
     )
 
@@ -64,19 +62,21 @@ object Contents:
                 Seq.empty
             else
                 Seq(
-                    div(id := "charts", cls := "flex-row sm:flex-col",
-                        div(id := "chart1", cls := "w-5/12"),
-                        div(id := "chart2", cls := "w-5/12")
+                    div(id := "charts", cls := "flex-row bg-base-200",
+                        div(id := "chart1", cls := "w-1/2 float-left"),
+                        div(id := "chart2", cls := "w-1/2 float-right")
                     ),
                     script("Apex.setupCharts('chart1', 'chart2')") 
                 )
 
-        div(id := "page", // cls := "flex-col", 
-            div(id := "hcontent", cls := hclass, 
-                h1(cls := "text-5xl font-bold", texts(i)._1),
-                p(cls := "py-6", texts(i)._2),
-                button(cls := "btn btn-primary ", texts(i)._3)(buttonModifier),
-                formElem,
+        div(cls := "hero min-h-screen bg-base-200",
+            div(id := "page", // cls := "flex-col", 
+                div(id := "hcontent", cls := hclass, 
+                    h1(cls := "text-5xl font-bold", texts(i)._1),
+                    p(cls := "py-6", texts(i)._2),
+                    button(cls := "btn btn-primary ", texts(i)._3)(buttonModifier),
+                    formElem,
+                ),
+                chartElem
             ),
-            chartElem
         )

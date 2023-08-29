@@ -8,7 +8,12 @@ using http4s as server, scalatags as html rendering
 * css using daisyui & tailwindcss
 * javascripts : scala.js, htmx, apexcharts (chart drawings)
 
-### make
-* server : sbt htestJVM/run
-* javascript compile : sbt htestJS/fastLinkJS
-* css : npx tailwindcss -i input.css -o htest/jvm/src/main/resources/htest.css
+### prepare, make & run
+1. download htmx.min.js, apexcharts.js and copy these to htest/jvm/src/main/resources
+2. css compile : npx tailwindcss -i input.css -o htest/jvm/src/main/resources/htest.css
+3. javascript compile : sbt htestJS/fastLinkJS
+4. server compile & run : sbt htestJVM/run
+
+### bugs & todo
+* ~~boxplot is not displayed at first, once zoom in/out of browser it is displayed correctly~~
+* ~~display two charts in flex-row~~

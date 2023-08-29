@@ -59,7 +59,7 @@ object Apex:
     private def updateChartValues(e:Event) = 
         // println("add data to plots")
         type AData = js.Array[Any]
-        def apexData(d: AData) = js.Array(js.Dynamic.literal(data = d))
+        def apexData(d: AData): AData = js.Array(js.Dynamic.literal(data = d))
         val r = JSON.parse(xhttp.responseText)
 
         // val sData = js.Array(js.Dynamic.literal(data = r.values.asInstanceOf[js.Array[Any]]))
@@ -68,7 +68,11 @@ object Apex:
         callCount += 1
         // val bData = js.Array(js.Dynamic.literal(data = js.Array(js.Dynamic.literal(x = callCount.toString, y = r.boxdata.asInstanceOf[js.Array[Any]]))))
         val bData = apexData(js.Array(js.Dynamic.literal(x = callCount.toString, y = r.boxdata.asInstanceOf[AData])))
-        ApexCharts.exec("boxChart", "appendData", bData)
+        val bchart = ApexCharts.getChartByID("boxChart").toOption
+        bchart.foreach(c => 
+            c.appendData(bData)
+            c.asInstanceOf[js.Dynamic]._windowResize()  // cast to Dynamic to call non-public method
+        )
 
     @JSExport
     def gatherAndCall() = 

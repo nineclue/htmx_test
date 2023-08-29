@@ -18,7 +18,7 @@ lazy val htest = crossProject(JSPlatform, JVMPlatform)
       )
     )
     .jvmSettings(
-      Compile / run / mainClass := Some("server.TestServer"),
+      // Compile / run / mainClass := Some("server.TestServer"),
       libraryDependencies ++= Seq(
         "org.http4s" %% "http4s-dsl" % http4sVersion,
         "org.http4s" %% "http4s-ember-server" % http4sVersion,
