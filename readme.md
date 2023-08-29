@@ -14,6 +14,9 @@ using http4s as server, scalatags as html rendering
 3. javascript compile : sbt htestJS/fastLinkJS
 4. server compile & run : sbt htestJVM/run
 
+### screenshot
+![Screenshot](https://github.com/nineclue/htmx_test/blob/9faf7441ed944b910f5e229f2975a14681e17865/htmx_test_run.gif)
+
 ### bugs & todo
 * ~~boxplot is not displayed at first, once zoom in/out of browser it is displayed correctly~~
 * ~~display two charts in flex-row~~
