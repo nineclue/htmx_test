@@ -46,12 +46,13 @@ object TestServer extends IOApp:
             StaticFile.fromResource(file, Some(request)).getOrElseF(NotFound())
     }
 
+    private val portNum = 7878
     def run(as: List[String]): IO[ExitCode] = 
         EmberServerBuilder
             .default[IO]
             .withHost(ipv4"0.0.0.0")
-            .withPort(port"7878")
+            .withPort(Port.fromInt(portNum).get)
             .withHttpApp(service.orNotFound)
             .build
-            .use(_ => IO.never)
+            .use(_ => IO.print(s"Running server.\nVisit at http://localhost:$portNum\n") *> IO.never)
             .as(ExitCode.Success)

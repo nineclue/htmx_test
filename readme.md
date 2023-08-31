@@ -13,6 +13,7 @@ using http4s as server, scalatags as html rendering
 2. css compile : npx tailwindcss -i input.css -o htest/jvm/src/main/resources/htest.css
 3. javascript compile : sbt htestJS/fastLinkJS
 4. server compile & run : sbt htestJVM/run
+5. open http://localhost:7878
 
 ### screenshot
 ![Screenshot](https://github.com/nineclue/htmx_test/blob/9faf7441ed944b910f5e229f2975a14681e17865/htmx_test_run.gif)
