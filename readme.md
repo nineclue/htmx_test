@@ -11,7 +11,15 @@ using http4s as server, scalatags as html rendering
 ### prepare, make & run
 1. download htmx.min.js, apexcharts.js and copy these to htest/jvm/src/main/resources
 2. css compile : npx tailwindcss -i input.css -o htest/jvm/src/main/resources/htest.css
-3. javascript compile : sbt htestJS/fastLinkJS
+3. javascript compile 
+    need to install scalablytyped CLI (stc) to make scala.js facade of ApexCharts
+    need to install cs to install scalablytyped CLI (stc) [https://scalablytyped.org/docs/cli]
+    ```
+    npm install apexcharts
+    npm install typescript
+    stc 
+    ```
+    sbt htestJS/fastLinkJS
 4. server compile & run : sbt htestJVM/run
 5. open http://localhost:7878
 

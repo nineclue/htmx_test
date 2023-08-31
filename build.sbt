@@ -14,7 +14,7 @@ lazy val htest = crossProject(JSPlatform, JVMPlatform)
     .jsSettings(
       // Compile / mainClass := Some("apex.Apex"),   
       libraryDependencies ++= Seq(
-        "org.scalablytyped" %%% "apexcharts" % "3.41.1-c6beb6",
+        "org.scalablytyped" %%% "apexcharts" % "3.42.0-c6beb6"
       )
     )
     .jvmSettings(
